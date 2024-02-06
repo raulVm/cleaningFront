@@ -6,6 +6,9 @@ import Login from './pages/Login.vue';
 import Profile from './pages/Profile.vue';
 import MainNavbar from './layout/MainNavbar.vue';
 import MainFooter from './layout/MainFooter.vue';
+import Nosotros from './pages/Nosotros.vue'
+import Servicios from './pages/Servicios.vue'
+import Contacto from './pages/Contacto.vue'
 
 Vue.use(Router);
 
@@ -42,6 +45,33 @@ export default new Router({
       path: '/profile',
       name: 'profile',
       components: { default: Profile, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/nosotros',
+      name: 'nosotros',
+      components: { default: Nosotros, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/servicios',
+      name: 'servicios',
+      components: { default: Servicios, header: MainNavbar, footer: MainFooter },
+      props: {
+        header: { colorOnScroll: 400 },
+        footer: { backgroundColor: 'black' }
+      }
+    },
+    {
+      path: '/contacto',
+      name: 'contacto',
+      components: { default: Contacto, header: MainNavbar, footer: MainFooter },
       props: {
         header: { colorOnScroll: 400 },
         footer: { backgroundColor: 'black' }

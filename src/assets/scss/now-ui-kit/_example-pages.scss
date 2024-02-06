@@ -176,6 +176,9 @@
         }
 
     }
+    &[filter-color="blue"]{
+        @include linear-gradient(rgba($black-color,.20), rgba(23, 159, 238, 0.6));
+    }
 
     &[data-image]:after{
         opacity: .5;

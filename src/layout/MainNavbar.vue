@@ -1,14 +1,14 @@
 <template>
   <navbar
     position="fixed"
-    type="primary"
+    type="info"
     :transparent="transparent"
     :color-on-scroll="colorOnScroll"
     menu-classes="ml-auto"
   >
     <template>
       <router-link v-popover:popover1 class="navbar-brand" to="/">
-        Now Ui Kit
+        Inicio
       </router-link>
       <el-popover
         ref="popover1"
@@ -24,23 +24,43 @@
     </template>
     <template slot="navbar-menu">
       <li class="nav-item">
+        <router-link to="/nosotros">
+          <a
+            class="nav-link"
+          >
+            <i class="now-ui-icons business_bank"></i>
+            <p>Nosotros</p>
+          </a>
+        </router-link>
+      </li>
+      <li class="nav-item">
+        <router-link to="/servicios">
+          <a
+            class="nav-link"
+          >
+            <i class="now-ui-icons design_vector"></i>
+            <p>Servicios</p>
+          </a>
+        </router-link>
+      </li>
+      <li class="nav-item">
         <a
           class="nav-link"
           href="https://www.creative-tim.com/product/vue-now-ui-kit"
           target="_blank"
         >
-          <i class="now-ui-icons arrows-1_cloud-download-93"></i>
-          <p>Download</p>
+          <i class="now-ui-icons arrows-1_refresh-69"></i>
+          <p>Proceso</p>
         </a>
       </li>
-      <drop-down
+      <!-- <drop-down
         tag="li"
         title="Components"
         icon="now-ui-icons design_app"
         class="nav-item"
       >
         <nav-link to="/">
-          <i class="now-ui-icons business_chart-pie-36"></i> All components
+          <i class="now-ui-icons business_chart-pie-36"></i> Servicios
         </nav-link>
         <a
           href="https://demos.creative-tim.com/vue-now-ui-kit/documentation"
@@ -49,32 +69,16 @@
         >
           <i class="now-ui-icons design_bullet-list-67"></i> Documentation
         </a>
-      </drop-down>
-      <drop-down
-              tag="li"
-              title="Examples"
-              icon="now-ui-icons design_image"
-              class="nav-item"
-      >
-        <nav-link to="/landing">
-          <i class="now-ui-icons education_paper"></i> Landing
-        </nav-link>
-        <nav-link to="/login">
-          <i class="now-ui-icons users_circle-08"></i> Login
-        </nav-link>
-        <nav-link to="/profile">
-          <i class="now-ui-icons users_single-02"></i> Profile
-        </nav-link>
-      </drop-down>
+      </drop-down> -->
       <li class="nav-item">
-        <a
-          class="nav-link btn btn-neutral"
-          href="https://www.creative-tim.com/product/vue-now-ui-kit-pro"
-          target="_blank"
-        >
-          <i class="now-ui-icons arrows-1_share-66"></i>
-          <p>Upgrade to PRO</p>
-        </a>
+        <router-link to="/contacto">
+          <a
+            class="nav-link"
+          >
+            <i class="now-ui-icons design_vector"></i>
+            <p>CONTACTO</p>
+          </a>
+        </router-link>
       </li>
 
       <li class="nav-item">
@@ -94,9 +98,9 @@
         <a
           class="nav-link"
           rel="tooltip"
-          title="Like us on Facebook"
+          title="Siguenos en Facebook"
           data-placement="bottom"
-          href="https://www.facebook.com/CreativeTim"
+          href="https://www.facebook.com/p/Innova-Crea-Construye-100063493114938/?paipv=0&eav=AfZVNfUoWQL4PuwXeYttEBVjY_rUUSKC7kypGqQZ0pA_tlAGa48IuzFYsU3Bv4v92O4&_rdr"
           target="_blank"
         >
           <i class="fab fa-facebook-square"></i>
@@ -107,9 +111,9 @@
         <a
           class="nav-link"
           rel="tooltip"
-          title="Follow us on Instagram"
+          title="Siguenos en Instagram"
           data-placement="bottom"
-          href="https://www.instagram.com/CreativeTimOfficial"
+          href="https://www.instagram.com/constructorabautista_/"
           target="_blank"
         >
           <i class="fab fa-instagram"></i>
@@ -130,9 +134,9 @@ export default {
     colorOnScroll: Number
   },
   components: {
-    DropDown,
+    // DropDown,
     Navbar,
-    NavLink,
+    // NavLink,
     [Popover.name]: Popover
   }
 };
