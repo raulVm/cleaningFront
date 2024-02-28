@@ -83,7 +83,7 @@
               <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.732916537732!2d-98.96053883018295!3d19.286039305505387!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1c451d79cab9%3A0xeed480f2270bcca9!2sAv%20Tlaloc%2026%2C%20Ni%C3%B1os%20Heroes%2C%2056610%20Valle%20de%20Chalco%20Solidaridad%2C%20M%C3%A9x.!5e0!3m2!1ses!2smx!4v1707197036523!5m2!1ses!2smx" width="520" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </card>
             <card class="col-md-6 card-body">
-              <div class="text-center">
+              <div class="">
                 <div class="">
                   <div class="col-md-12">
                     <label for="nombreC">Nombre Completo:</label>
@@ -94,7 +94,7 @@
                   </div>
                   <div class="col-md-12">
                     <label for="correoE">Correo Electrónico: </label>
-                    <input type="text" class="form-control form-control-rounded"
+                    <input type="email" class="form-control form-control-rounded"
                       v-model="form.correoE"
                       placeholder="Escribe tu correo electrónico"
                     >                  
@@ -107,7 +107,7 @@
                     >                  
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlSelect1">Example select</label>
+                    <label for="exampleFormControlSelect1">Estado:</label>
                     <select class="form-control" id="exampleFormControlSelect1">
                       <option>1</option>
                       <option>2</option>
@@ -117,7 +117,7 @@
                     </select>
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlSelect2">Example multiple select</label>
+                    <label for="exampleFormControlSelect2">Municipio:</label>
                     <select multiple class="form-control" id="exampleFormControlSelect2">
                       <option>1</option>
                       <option>2</option>
@@ -127,8 +127,28 @@
                     </select>
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlTextarea1">Domicilio:</label>
+                    <label for="exampleFormControlSelect1">Colonia:</label>
+                    <select class="form-control" id="exampleFormControlSelect1">
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>4</option>
+                      <option>5</option>
+                    </select>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="correoE">Servicio con: </label>
+                    <select class="form-control" id="servicioCon">
+                      <option>Cleaning</option>
+                      <option>Innova, Crea y Construye</option>
+                    </select>             
+                  </div>
+                  <div class="col-md-12">
+                    <label for="exampleFormControlTextarea1">Descripción breve del servicio:</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                  <div class="col-md-12">
+                    <button type="button" class="btn btn-info btn-lg btn-block">Enviar</button>
                   </div>
                 </div>
               </div>
