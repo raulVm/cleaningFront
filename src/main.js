@@ -22,17 +22,13 @@ import NowUiKit from './plugins/now-ui-kit';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 import { faUserSecret } from '@fortawesome/free-solid-svg-icons'
-import * as VueGoogleMaps from 'vue2-google-maps'
+import vSelect from 'vue-select'
+import 'vue-select/dist/vue-select.css';
 
 library.add(faUserSecret)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
+Vue.component('v-select', vSelect)
 Vue.config.productionTip = false;
-Vue.use(VueGoogleMaps, {
-  load: {
-    key: 'AIzaSyBqTdYmqQSa3lfSCZjfCPjbijdKmCZFO8M',
-    libraries: 'places',
-  }
-});
 
 Vue.use(NowUiKit);
 

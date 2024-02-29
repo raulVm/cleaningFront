@@ -86,69 +86,95 @@
               <div class="">
                 <div class="">
                   <div class="col-md-12">
-                    <label for="nombreC">Nombre Completo:</label>
+                    <label for="nombreC">Nombre Completo: <span style="color: #ab0000;font-size: 20px">*</span></label>
                     <input type="text" class="form-control form-control-rounded"
                       v-model="form.nombreC"
                       placeholder="Escribe tu nombre completo"
                     >
+                    <span v-if="error.nombreC" class="error">{{error.mensaje}}</span>
                   </div>
                   <div class="col-md-12">
-                    <label for="correoE">Correo Electrónico: </label>
+                    <label for="correoE">Correo Electrónico: <span style="color: #ab0000;font-size: 20px">*</span></label>
                     <input type="email" class="form-control form-control-rounded"
                       v-model="form.correoE"
                       placeholder="Escribe tu correo electrónico"
-                    >                  
+                    >    
+                    <span v-if="error.correoE" class="error">{{error.mensaje}}</span>              
                   </div>
                   <div class="col-md-12">
-                    <label for="correoE">Teléfono: </label>
+                    <label for="correoE">Teléfono: <span style="color: #ab0000;font-size: 20px">*</span></label>
                     <input type="text" class="form-control form-control-rounded"
                       v-model="form.telefono"
                       placeholder="Escribe tu número de teléfono"
-                    >                  
+                    >     
+                    <span v-if="error.telefono" class="error">{{error.mensaje}}</span>             
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlSelect1">Estado:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <label for="exampleFormControlSelect1">Estado: <span style="color: #ab0000;font-size: 20px">*</span></label>
+                    <v-select
+                      placeholder="Selecciona el estado"
+                      label="Estado:"
+                      :options="opcionesEstado"
+                      v-model="form.estado"
+                      @input="OpcionesEstado(form.estado)"
+                      :getOptionLabel="estados => estados.nombre"
+                    ></v-select>
+                    <span v-if="error.estado" class="error">{{error.mensaje}}</span>
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlSelect2">Municipio:</label>
-                    <select multiple class="form-control" id="exampleFormControlSelect2">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <label for="exampleFormControlSelect2">Municipio: <span style="color: #ab0000;font-size: 20px">*</span></label>
+                    <v-select
+                      placeholder="Selecciona el municipio"
+                      label="Municipio:"
+                      :options="opcionesMunicipio"
+                      v-model="form.municipio"
+                      @input="OpcionesMunicipio(form.municipio)"
+                      :disabled="disableMunicipio"
+                      :getOptionLabel="municipios => municipios.nombre"
+                    ></v-select>
+                    <span v-if="error.municipio" class="error">{{error.mensaje}}</span>
+                  </div>
+                  <div class="col-md-12">
+                    <label for="exampleFormControlSelect1">Localidad:</label>
+                    <v-select
+                      placeholder="Selecciona la localidad"
+                      label="Localidad:"
+                      :options="opcionesLocalidades"
+                      v-model="form.localidad"
+                      :disabled="disableLocalidad"
+                      :getOptionLabel="localidades => localidades.nombre"
+                    ></v-select>
                   </div>
                   <div class="col-md-12">
                     <label for="exampleFormControlSelect1">Colonia:</label>
-                    <select class="form-control" id="exampleFormControlSelect1">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
-                      <option>5</option>
-                    </select>
+                    <v-select
+                      placeholder="Selecciona la colonia"
+                      label="Colonia:"
+                      :options="opcionesColonias"
+                      v-model="form.colonia"
+                      :disabled="disableColonia"
+                      :getOptionLabel="colonias => colonias.asentamiento"
+                    ></v-select>
                   </div>
                   <div class="col-md-12">
-                    <label for="correoE">Servicio con: </label>
-                    <select class="form-control" id="servicioCon">
-                      <option>Cleaning</option>
-                      <option>Innova, Crea y Construye</option>
-                    </select>             
+                    <label for="servicio">Servicio: <span style="color: #ab0000;font-size: 20px">*</span></label>
+                    <v-select
+                      placeholder="Selecciona el servicio"
+                      label="Servicio:"
+                      :options="opcionesServicio"
+                      v-model="form.servicio"
+                      :disabled="disableServicio"
+                      multiple
+                    ></v-select>   
+                    <span v-if="error.servicio" class="error">{{error.mensaje}}</span>        
                   </div>
                   <div class="col-md-12">
-                    <label for="exampleFormControlTextarea1">Descripción breve del servicio:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                    <label for="exampleFormControlTextarea1">Descripción breve del servicio: <span style="color: #ab0000;font-size: 20px">*</span></label>
+                    <textarea class="form-control form-control-rounded" v-model="form.descripcion" rows="3"></textarea>
+                    <span v-if="error.descripcion" class="error">{{error.mensaje}}</span>
                   </div>
                   <div class="col-md-12">
-                    <button type="button" class="btn btn-info btn-lg btn-block">Enviar</button>
+                    <button  @click="Guardar()" type="submit" class="btn btn-info btn-lg btn-block">Enviar</button>
                   </div>
                 </div>
               </div>
@@ -160,6 +186,9 @@
   </template>
   <script>
   import { Button, FormGroupInput } from '@/components';
+  // import instance from '../components/index';
+  import axios from 'axios';
+
   export default {
     name: 'contacto',
     bodyClass: 'landing-page',
@@ -174,15 +203,85 @@
           correoE: '',
           telefono: '',
           fecha: '',
-          domicilio:'',
-          catSolicitud:[],
-          solicitud:0,
-          catSubSolicitud:[],
-          subSolicitud:0
+          estado: '',
+          municipio: '',
+          localidad: '',
+          colonia: '',
+          servicio: [],
+          descripcion: '',
         },
+        url:'http://127.0.0.1:8000/api',
+        opcionesEstado: [],
+        opcionesMunicipio: [],
+        opcionesLocalidades: [],
+        opcionesColonias: [],
+        disableMunicipio: true,
+        disableLocalidad: true,
+        disableColonia: true,
+        disableServicio: false,
+        opcionesServicio: ['Innova, Crea y Construye', 'Clening'],
+        error:{
+          nombreC: false,
+          correoE: false,
+          telefono: false,
+          estado: false,
+          municipio: false,
+          servicio: false,
+          descripcion: false,
+          mensaje: 'Este campo es requerido'
+        }
       };
     },
+    mounted() {
+      this.getEstados();
+    },
     methods:{
+      getEstados(){
+        axios.get(this.url + '/catalogo/estados')
+        .then(response => {
+          this.opcionesEstado = response.data;
+        })
+      },
+      getMunicipios(data){
+        axios.get(this.url + '/catalogo/municipios/'+data)
+        .then(response => {
+          this.opcionesMunicipio = response.data;
+        })
+      },
+      getLocalidades(estado,mun){
+        axios.get(this.url + '/catalogo/localidades/'+ estado + '/'+ mun)
+        .then(response => {
+          this.opcionesLocalidades = response.data;
+        })
+      },
+      getColonias(estado,mun){
+        axios.get(this.url + '/catalogo/colonias/'+ estado + '/'+ mun)
+        .then(response => {
+          this.opcionesColonias = response.data;
+        })
+      },
+      OpcionesEstado(data){
+        this.disableMunicipio = false;
+        this.disableLocalidad = true;
+        this.disableColonia = true;
+        this.form.localidad = '';
+        this.form.colonia = '';
+        this.form.municipio = '';
+        this.getMunicipios(data.id);
+        console.log('entra OpcionesEstado', data);
+      },
+      OpcionesMunicipio(data){
+        this.disableLocalidad = false;
+        this.disableColonia = false;
+        this.form.localidad = '';
+        this.form.colonia = '';
+        this.getLocalidades(this.form.estado.id,data.cve_mun);
+        this.getColonias(this.form.estado.id,data.cve_mun);
+        console.log(this.form.estado,'entra OpcionesMunicipio', data);
+      },
+      async Guardar(e){
+        console.log('enviar solicitud');
+      }
     }
   };
   </script>
