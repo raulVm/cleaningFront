@@ -202,7 +202,6 @@
           nombreC: '',
           correoE: '',
           telefono: '',
-          fecha: '',
           estado: '',
           municipio: '',
           localidad: '',
@@ -268,7 +267,6 @@
         this.form.colonia = '';
         this.form.municipio = '';
         this.getMunicipios(data.id);
-        console.log('entra OpcionesEstado', data);
       },
       OpcionesMunicipio(data){
         this.disableLocalidad = false;
@@ -277,10 +275,46 @@
         this.form.colonia = '';
         this.getLocalidades(this.form.estado.id,data.cve_mun);
         this.getColonias(this.form.estado.id,data.cve_mun);
-        console.log(this.form.estado,'entra OpcionesMunicipio', data);
       },
       async Guardar(e){
-        console.log('enviar solicitud');
+        console.log(this.form);
+        (!this.form.nombreC)?this.error.nombreC = true: this.error.nombreC = false;
+        (!this.form.correoE)?this.error.correoE = true: this.error.correoE = false;
+        (!this.form.telefono)?this.error.telefono = true: this.error.telefono = false;
+        (!this.form.estado)?this.error.estado = true: this.error.estado = false;
+        (!this.form.municipio)?this.error.municipio = true: this.error.municipio = false;
+        (this.form.servicio.length == 0)?this.error.servicio = true: this.error.servicio = false;
+        (!this.form.descripcion)?this.error.descripcion = true: this.error.descripcion = false;
+        if(this.error.nombreC == false && this.error.correoE == false && this.error.telefono == false
+          && this.error.estado == false && this.error.municipio == false &&this.error.servicio == false &&
+          this.error.descripcion == false){
+            let solicitud = {
+              nombre_completo: this.form.nombreC, correo_electronico: this.form.correoE,
+              telefono: this.form.telefono, id_estado: this.form.estado, id_municipio: this.form.municipio,
+              id_localidad: this.form.localidad ,id_colonia: this.form.colonia,
+              servicio:this.form.servicio, descripcion: this.form.descripcion
+            }
+          console.log('enviar solicitud saveSolicitud',solicitud);
+          let api = axios.post(this.url + `/saveSolicitud`, solicitud);
+          api.then((res) => {
+            swal({
+              title: 'Solicitud Registrada',
+              text: 'La solicitud se ha enviado correctamente',
+              type: 'success',
+              confirmButtonText: 'Aceptar',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+            })
+            .then((button) => {
+              if (button) {
+
+              }
+            });
+          }).catch(function (error){
+          });
+        }else{
+          console.log('no se puede enviar solicitud');
+        }
       }
     }
   };
@@ -311,6 +345,9 @@
     .description {
       color: #9a9a9a;
       font-weight: 300;
+    }
+    .error {
+      color:red;
     }
   </style>
   
