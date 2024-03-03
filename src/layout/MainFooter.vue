@@ -42,6 +42,7 @@
 </template>
 <script>
 export default {
+  name:'main-footer',
   props: {
     backgroundColor: String,
     type: String

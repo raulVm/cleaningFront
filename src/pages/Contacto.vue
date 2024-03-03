@@ -183,29 +183,25 @@
         </div>
       </div>
     </div>
-  </template>
-  <script>
-  import { Button, FormGroupInput } from '@/components';
+</template>
+<script>
+  import swal from 'sweetalert';
   // import instance from '../components/index';
   import axios from 'axios';
 
   export default {
     name: 'contacto',
-    bodyClass: 'landing-page',
-    components: {
-      [Button.name]: Button,
-      [FormGroupInput.name]: FormGroupInput,
-    },
+    bodyClass: 'contacto-page',
     data() {
       return {
         form: {
           nombreC: '',
           correoE: '',
           telefono: '',
-          estado: '',
-          municipio: '',
-          localidad: '',
-          colonia: '',
+          estado: null,
+          municipio: null,
+          localidad: null,
+          colonia: null,
           servicio: [],
           descripcion: '',
         },
@@ -277,7 +273,6 @@
         this.getColonias(this.form.estado.id,data.cve_mun);
       },
       async Guardar(e){
-        console.log(this.form);
         (!this.form.nombreC)?this.error.nombreC = true: this.error.nombreC = false;
         (!this.form.correoE)?this.error.correoE = true: this.error.correoE = false;
         (!this.form.telefono)?this.error.telefono = true: this.error.telefono = false;
@@ -294,28 +289,45 @@
               id_localidad: this.form.localidad ,id_colonia: this.form.colonia,
               servicio:this.form.servicio, descripcion: this.form.descripcion
             }
-          console.log('enviar solicitud saveSolicitud',solicitud);
           let api = axios.post(this.url + `/saveSolicitud`, solicitud);
           api.then((res) => {
             swal({
               title: 'Solicitud Registrada',
-              text: 'La solicitud se ha enviado correctamente',
-              type: 'success',
+              text: res.data.message,
+              icon: 'success',
               confirmButtonText: 'Aceptar',
               allowOutsideClick: false,
               allowEscapeKey: false,
             })
             .then((button) => {
               if (button) {
-
+                this.LimpiarFormulario();
               }
             });
           }).catch(function (error){
           });
         }else{
-          console.log('no se puede enviar solicitud');
+          swal({
+              title: 'Solicitud no Registrada',
+              text: 'Ocurrio un error al enviar la solicitud',
+              icon: 'warning',
+              confirmButtonText: 'Aceptar',
+              allowOutsideClick: false,
+              allowEscapeKey: false,
+            })
         }
-      }
+      },
+      LimpiarFormulario(){
+        this.form.nombreC = '';
+        this.form.correoE = '';
+        this.form.telefono = '';
+        this.form.estado = null;
+        this.form.municipio = null;
+        this.form.localidad = null;
+        this.form.colonia = null;
+        this.form.servicio = [];
+        this.form.descripcion = '';
+      },
     }
   };
   </script>

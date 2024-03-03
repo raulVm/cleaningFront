@@ -210,7 +210,7 @@
   
   export default {
     name: 'nosotros',
-    bodyClass: 'profile-page',
+    bodyClass: 'nosotros-page',
     components: {
       Tabs,
       TabPane
